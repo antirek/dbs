@@ -1,0 +1,21 @@
+version: '2'
+services:
+  redis:
+    image: redis:6.0.8
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/store/dbs/redis/data:/data"
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server
+
+  mongodb:
+    image: mongo:4.2.9
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/store/dbs/mongodb/db:/data/db"
+    restart: always
+    ports:
+      - "27017:27017"
+    command: mongod
