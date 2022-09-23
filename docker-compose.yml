@@ -1,7 +1,7 @@
 version: '2'
 services:
   redis:
-    image: redis:6.2.2
+    image: redis:7.0.5
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/var/store/dbs/redis/data:/data"
@@ -11,7 +11,7 @@ services:
     command: redis-server
 
   mongodb:
-    image: mongo:4.4.5
+    image: mongo:5.0.8
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/var/store/dbs/mongodb/db:/data/db"
