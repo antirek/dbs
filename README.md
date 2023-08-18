@@ -12,7 +12,7 @@ docker-compose файл для бд:
 
 ### docker-compose-ui.yml
 
-docker-compose файл для бд:
+docker-compose файл для ui:
 
 - phpmyadmin
 
