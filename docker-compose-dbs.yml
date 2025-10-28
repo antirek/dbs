@@ -32,3 +32,19 @@ services:
     ports:
       - "3306:3306"
     command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
+
+  rabbitmq:
+    image: rabbitmq:3.13.7-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmuser
+      - RABBITMQ_DEFAULT_PASS=rmpassword
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
+    volumes:
+      - "/var/store/dbs/rabbitmq:/var/lib/rabbitmq"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    mem_limit: 1g
+    memswap_limit: 200m
