@@ -47,4 +47,25 @@ services:
       - 15672:15672
       - 5672:5672
     mem_limit: 1g
-    memswap_limit: 200m
+    memswap_limit: 2g
+
+  ydb:
+    image: ydbplatform/local-ydb:25.2.1
+    ## container_name: ydb-local
+    ## hostname: ydb
+    restart: always
+    environment:
+      - GRPC_TLS_PORT=2135
+      - GRPC_PORT=2136
+      - MON_PORT=8765
+      - YDB_KAFKA_PROXY_PORT=9092
+    volumes:
+      - "/var/store/dbs/ydb/certs:/ydb_certs"
+      - "/var/store/dbs/ydb/data:/ydb_data"
+    ports:
+      - "2135:2135" # gRPC over TLS (grpcs)
+      - "2136:2136" # gRPC without TLS
+      - "8765:8765" # HTTP UI/monitoring
+      - "5432:5432" # PostgreSQL-compatible endpoint
+      - "9092:9092" # Kafka-compatible endpoint
+    command: []
