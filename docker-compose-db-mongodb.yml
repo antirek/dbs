@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  mongodb:
+    image: mongo:5.0.8
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/store/dbs/mongodb/db:/data/db"
+    restart: always
+    ports:
+      - "27017:27017"
+    command: mongod
+

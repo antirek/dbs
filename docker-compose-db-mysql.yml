@@ -1,0 +1,15 @@
+version: '2.4'
+services:
+  mysqldb:
+    image: mysql:5.7.34
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=test
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/store/dbs/mysqldb/lib/mysql:/var/lib/mysql"
+    restart: always
+    ports:
+      - "3306:3306"
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
+
